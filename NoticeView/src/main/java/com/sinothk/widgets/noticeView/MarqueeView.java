@@ -42,9 +42,9 @@ public class MarqueeView extends ViewFlipper {
     private static final int DIRECTION_LEFT_TO_RIGHT = 3;
 
     @AnimRes
-    private int inAnimResId = R.anim.anim_bottom_in;
+    private int inAnimResId = R.anim.notice_anim_bottom_in;
     @AnimRes
-    private int outAnimResId = R.anim.anim_top_out;
+    private int outAnimResId = R.anim.notice_anim_top_out;
 
     private int position;
     private List<? extends CharSequence> notices = new ArrayList<>();
@@ -90,25 +90,25 @@ public class MarqueeView extends ViewFlipper {
         if (hasSetDirection) {
             switch (direction) {
                 case DIRECTION_BOTTOM_TO_TOP:
-                    inAnimResId = R.anim.anim_bottom_in;
-                    outAnimResId = R.anim.anim_top_out;
+                    inAnimResId = R.anim.notice_anim_bottom_in;
+                    outAnimResId = R.anim.notice_anim_top_out;
                     break;
                 case DIRECTION_TOP_TO_BOTTOM:
-                    inAnimResId = R.anim.anim_top_in;
-                    outAnimResId = R.anim.anim_bottom_out;
+                    inAnimResId = R.anim.notice_anim_top_in;
+                    outAnimResId = R.anim.notice_anim_bottom_out;
                     break;
                 case DIRECTION_RIGHT_TO_LEFT:
-                    inAnimResId = R.anim.anim_right_in;
-                    outAnimResId = R.anim.anim_left_out;
+                    inAnimResId = R.anim.notice_anim_right_in;
+                    outAnimResId = R.anim.notice_anim_left_out;
                     break;
                 case DIRECTION_LEFT_TO_RIGHT:
-                    inAnimResId = R.anim.anim_left_in;
-                    outAnimResId = R.anim.anim_right_out;
+                    inAnimResId = R.anim.notice_anim_left_in;
+                    outAnimResId = R.anim.notice_anim_right_out;
                     break;
             }
         } else {
-            inAnimResId = R.anim.anim_bottom_in;
-            outAnimResId = R.anim.anim_top_out;
+            inAnimResId = R.anim.notice_anim_bottom_in;
+            outAnimResId = R.anim.notice_anim_top_out;
         }
 
         typedArray.recycle();
