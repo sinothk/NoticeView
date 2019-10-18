@@ -3,7 +3,6 @@ package com.sinothk.widgets.noticeView;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
-import android.support.annotation.AnimRes;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -13,6 +12,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
+
+import androidx.annotation.AnimRes;
 
 import java.util.ArrayList;
 import java.util.List;

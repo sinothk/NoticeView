@@ -1,12 +1,15 @@
 package com.sinothk.noticeView.demo;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.URLSpan;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.sinothk.widgets.noticeView.MarqueeView;
 
@@ -22,7 +25,7 @@ public class NoticeViewDemoMainActivity extends AppCompatActivity {
 
         MarqueeView marqueeView = this.findViewById(R.id.marqueeView);
 
-        List<CharSequence> list = new ArrayList<>();
+        final List<CharSequence> list = new ArrayList<>();
 
         SpannableString ss1 = new SpannableString("1、MarqueeView开源项目");
         ss1.setSpan(new ForegroundColorSpan(Color.RED), 2, 13, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -42,6 +45,12 @@ public class NoticeViewDemoMainActivity extends AppCompatActivity {
         marqueeView.startWithList(list);
 
         MarqueeView marqueeView2 = this.findViewById(R.id.marqueeView2);
-        marqueeView2.startWithText(getString(R.string.marquee_text));
+        marqueeView2.startWithList(list);
+        marqueeView2.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, TextView textView) {
+                Toast.makeText(NoticeViewDemoMainActivity.this, list.get(position), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

@@ -51,15 +51,15 @@
             android:src="@mipmap/ic_loudspeaker" />
 
         <!--<com.sinothk.widgets.noticeView.MarqueeView-->
-            <!--android:id="@+id/marqueeView2"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_marginLeft="8dp"-->
-            <!--android:layout_toRightOf="@+id/iv_speaker33"-->
-            <!--app:mvTextColor="@color/white"-->
-            <!--app:mvDirection="bottom_to_top"-->
-            <!--app:mvTextSize="14sp" />-->
+        <!--android:id="@+id/marqueeView2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:layout_marginLeft="8dp"-->
+        <!--android:layout_toRightOf="@+id/iv_speaker33"-->
+        <!--app:mvTextColor="@color/white"-->
+        <!--app:mvDirection="bottom_to_top"-->
+        <!--app:mvTextSize="14sp" />-->
 
         <com.sinothk.widgets.noticeView.MarqueeView
             android:id="@+id/marqueeView2"
@@ -70,7 +70,7 @@
             android:layout_toRightOf="@+id/iv_speaker33"
             app:mvDirection="right_to_left"
             app:mvGravity="left"
-            app:mvTextColor="@color/red"/>
+            app:mvTextColor="@color/red" />
     </RelativeLayout>
 
 </LinearLayout>
