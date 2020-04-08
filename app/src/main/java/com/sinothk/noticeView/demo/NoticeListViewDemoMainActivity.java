@@ -36,7 +36,6 @@ public class NoticeListViewDemoMainActivity extends AppCompatActivity {
         list.add(listData);
         list.add(listData2);
 
-        //
         MarqueeListView marqueeListView = this.findViewById(R.id.marqueeListView);
         marqueeListView.startWithList(list);
         marqueeListView.setOnItemClickListener(new MarqueeListView.OnItemClickListener() {
