@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.sinothk.widgets.noticeView.MarqueeListView;
 import com.sinothk.widgets.noticeView.MarqueeView;
 
 import java.util.ArrayList;
@@ -23,34 +24,38 @@ public class NoticeViewDemoMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notice_view_activity_main_demo);
 
-        MarqueeView marqueeView = this.findViewById(R.id.marqueeView);
-
+//        MarqueeView marqueeView = this.findViewById(R.id.marqueeView);
+//
         final List<CharSequence> list = new ArrayList<>();
-
-        SpannableString ss1 = new SpannableString("1、MarqueeView开源项目");
-        ss1.setSpan(new ForegroundColorSpan(Color.RED), 2, 13, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        list.add(ss1);
-
-        SpannableString ss2 = new SpannableString("2、GitHub：sfsheng0322");
-        ss2.setSpan(new ForegroundColorSpan(Color.GREEN), 9, 20, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        list.add(ss2);
-
-        SpannableString ss3 = new SpannableString("3、个人博客：sunfusheng.com");
-        ss3.setSpan(new URLSpan("http://sunfusheng.com/"), 7, 21, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        list.add(ss3);
-
+//
+////        SpannableString ss1 = new SpannableString("1、MarqueeView开源项目");
+////        ss1.setSpan(new ForegroundColorSpan(Color.RED), 2, 13, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+////        list.add(ss1);
+////
+////        SpannableString ss2 = new SpannableString("2、GitHub：sfsheng0322");
+////        ss2.setSpan(new ForegroundColorSpan(Color.GREEN), 9, 20, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+////        list.add(ss2);
+////
+////        SpannableString ss3 = new SpannableString("3、个人博客：sunfusheng.com");
+////        ss3.setSpan(new URLSpan("http://sunfusheng.com/"), 7, 21, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+////        list.add(ss3);
+//
         list.add("4、新浪微博：@孙福生微博");
         list.add("5、www.sinothk.com");
+//
+//        marqueeView.startWithList(list);
+//
+//        MarqueeView marqueeView2 = this.findViewById(R.id.marqueeView2);
+//        marqueeView2.startWithList(list);
+//        marqueeView2.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(int position, TextView textView) {
+//                Toast.makeText(NoticeViewDemoMainActivity.this, list.get(position), Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
-        marqueeView.startWithList(list);
-
-        MarqueeView marqueeView2 = this.findViewById(R.id.marqueeView2);
-        marqueeView2.startWithList(list);
-        marqueeView2.setOnItemClickListener(new MarqueeView.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position, TextView textView) {
-                Toast.makeText(NoticeViewDemoMainActivity.this, list.get(position), Toast.LENGTH_SHORT).show();
-            }
-        });
+        //
+        MarqueeListView marqueeListView = this.findViewById(R.id.marqueeListView);
+        marqueeListView.startWithList(list);
     }
 }
