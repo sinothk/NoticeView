@@ -11,10 +11,12 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.TextView;
+import android.widget.ListView;
 import android.widget.ViewFlipper;
 
 import androidx.annotation.AnimRes;
+
+import com.sinothk.widgets.noticeView.adapter.MarqueeListViewAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +51,7 @@ public class MarqueeListView extends ViewFlipper {
     private int outAnimResId = R.anim.notice_anim_top_out;
 
     private int position;
-    private List<? extends CharSequence> notices = new ArrayList<>();
+    private List<ArrayList<String>> notices = new ArrayList<>();
 
     private OnItemClickListener onItemClickListener;
 
@@ -123,6 +125,7 @@ public class MarqueeListView extends ViewFlipper {
      *
      * @param notice 字符串
      */
+    @Deprecated
     public void startWithText(String notice) {
         startWithText(notice, inAnimResId, outAnimResId);
     }
@@ -135,6 +138,7 @@ public class MarqueeListView extends ViewFlipper {
      * @param outAnimResID 离开动画的resID
      */
     @SuppressWarnings("deprecation")
+    @Deprecated
     public void startWithText(final String notice, final @AnimRes int inAnimResId, final @AnimRes int outAnimResID) {
         if (TextUtils.isEmpty(notice)) return;
         getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -155,6 +159,7 @@ public class MarqueeListView extends ViewFlipper {
      *
      * @param notice 字符串
      */
+    @Deprecated
     private void startWithFixedWidth(String notice, @AnimRes int inAnimResId, @AnimRes int outAnimResID) {
         int noticeLength = notice.length();
         int width = MarqueeUtils.px2dip(getContext(), getWidth());
@@ -186,7 +191,7 @@ public class MarqueeListView extends ViewFlipper {
      *
      * @param notices 字符串列表
      */
-    public void startWithList(List<? extends CharSequence> notices) {
+    public void startWithList(List<ArrayList<String>> notices) {
         startWithList(notices, inAnimResId, outAnimResId);
     }
 
@@ -197,7 +202,7 @@ public class MarqueeListView extends ViewFlipper {
      * @param inAnimResId  进入动画的resID
      * @param outAnimResID 离开动画的resID
      */
-    public void startWithList(List<? extends CharSequence> notices, @AnimRes int inAnimResId, @AnimRes int outAnimResID) {
+    public void startWithList(List<ArrayList<String>> notices, @AnimRes int inAnimResId, @AnimRes int outAnimResID) {
         if (MarqueeUtils.isEmpty(notices)) return;
         setNotices(notices);
         postStart(inAnimResId, outAnimResID);
@@ -256,27 +261,9 @@ public class MarqueeListView extends ViewFlipper {
         }
     }
 
-    private View createView(CharSequence text) {
+    private View createView(ArrayList<String> listData) {
 
-//        TextView textView = (TextView) getChildAt((getDisplayedChild() + 1) % 3);
-//
-//        if (textView == null) {
-//            textView = new TextView(getContext());
-//            textView.setGravity(gravity);
-//            textView.setTextColor(textColor);
-//            textView.setTextSize(textSize);
-//            textView.setSingleLine(singleLine);
-//
-//            textView.setEllipsize(TextUtils.TruncateAt.END);
-//        }
-//
-//        textView.setText(text);
-//
-//        textView.setTag(position);
-//
-//        return textView;
-
-        View itemView = LayoutInflater.from(getContext()).inflate(R.layout.marquee_view_list_item, null);
+        View itemView = LayoutInflater.from(getContext()).inflate(R.layout.marquee_list_view, null);
         itemView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -286,21 +273,33 @@ public class MarqueeListView extends ViewFlipper {
             }
         });
 
+        ListView marqueeListView = itemView.findViewById(R.id.marqueeListView);
+
+//        ArrayList<String> listData = new ArrayList<>();
+//        listData.add("美国目前部署在西海岸的“尼米兹”号航母，也出现两名新冠");
+//        listData.add("美军已经有4艘航母出现新冠确诊病例，分别是“里根”号");
+//        listData.add("今年2月，路过华盛顿州西雅图市海岸的“尼米兹”号航母，由于不处于部署状态");
+//        listData.add("母港位于美国西海岸华盛顿州基察普海军基地布雷默顿港。");
+//        listData.add("负责美国西海岸防务的美国海军第三舰队发言人、海军中校约翰·法吉表示，“尼米兹”号已经开始“舰内隔离”");
+//        listData.add("如今在“尼米兹”号确诊以后，美国海军总共有4艘航母出现新冠确诊病例");
+
+        MarqueeListViewAdapter adapter = new MarqueeListViewAdapter(getContext(), listData);
+        marqueeListView.setAdapter(adapter);
+
+        // ==================================
         itemView.setTag(position);
-
         return itemView;
-
     }
 
     public int getPosition() {
         return (int) getCurrentView().getTag();
     }
 
-    public List<? extends CharSequence> getNotices() {
+    public List<ArrayList<String>> getNotices() {
         return notices;
     }
 
-    public void setNotices(List<? extends CharSequence> notices) {
+    public void setNotices(List<ArrayList<String>> notices) {
         this.notices = notices;
     }
 
