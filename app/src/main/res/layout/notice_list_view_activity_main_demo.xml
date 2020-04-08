@@ -16,7 +16,7 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <com.sinothk.widgets.noticeView.MarqueeListView
+        <com.sinothk.widgets.noticeView.marqueeListView.MarqueeListView
             android:id="@+id/marqueeListView"
             android:layout_width="match_parent"
             android:layout_height="120dp"

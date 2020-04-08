@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.sinothk.widgets.noticeView.MarqueeListView;
 import com.sinothk.widgets.noticeView.MarqueeView;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.sinothk.widgets.noticeView;
+package com.sinothk.widgets.noticeView.marqueeListView;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,18 +11,22 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ViewFlipper;
 
 import androidx.annotation.AnimRes;
 
-import com.sinothk.widgets.noticeView.adapter.MarqueeListViewAdapter;
+import com.sinothk.widgets.noticeView.MarqueeUtils;
+import com.sinothk.widgets.noticeView.R;
+import com.sinothk.widgets.noticeView.marqueeListView.adapter.MarqueeListViewAdapter;
+import com.sinothk.widgets.noticeView.marqueeListView.bean.MarqueeListEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by sunfusheng on 16/5/31.
+ *
  */
 public class MarqueeListView extends ViewFlipper {
 
@@ -51,7 +55,7 @@ public class MarqueeListView extends ViewFlipper {
     private int outAnimResId = R.anim.notice_anim_top_out;
 
     private int position;
-    private List<ArrayList<String>> notices = new ArrayList<>();
+    private List<ArrayList<MarqueeListEntity>> notices = new ArrayList<>();
 
     private OnItemClickListener onItemClickListener;
 
@@ -191,7 +195,7 @@ public class MarqueeListView extends ViewFlipper {
      *
      * @param notices 字符串列表
      */
-    public void startWithList(List<ArrayList<String>> notices) {
+    public void startWithList(List<ArrayList<MarqueeListEntity>> notices) {
         startWithList(notices, inAnimResId, outAnimResId);
     }
 
@@ -202,7 +206,7 @@ public class MarqueeListView extends ViewFlipper {
      * @param inAnimResId  进入动画的resID
      * @param outAnimResID 离开动画的resID
      */
-    public void startWithList(List<ArrayList<String>> notices, @AnimRes int inAnimResId, @AnimRes int outAnimResID) {
+    public void startWithList(List<ArrayList<MarqueeListEntity>> notices, @AnimRes int inAnimResId, @AnimRes int outAnimResID) {
         if (MarqueeUtils.isEmpty(notices)) return;
         setNotices(notices);
         postStart(inAnimResId, outAnimResID);
@@ -261,17 +265,9 @@ public class MarqueeListView extends ViewFlipper {
         }
     }
 
-    private View createView(ArrayList<String> listData) {
+    private View createView(ArrayList<MarqueeListEntity> listData) {
 
         View itemView = LayoutInflater.from(getContext()).inflate(R.layout.marquee_list_view, null);
-        itemView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onItemClickListener != null) {
-                    onItemClickListener.onItemClick(getPosition());
-                }
-            }
-        });
 
         ListView marqueeListView = itemView.findViewById(R.id.marqueeListView);
 
@@ -283,9 +279,16 @@ public class MarqueeListView extends ViewFlipper {
 //        listData.add("负责美国西海岸防务的美国海军第三舰队发言人、海军中校约翰·法吉表示，“尼米兹”号已经开始“舰内隔离”");
 //        listData.add("如今在“尼米兹”号确诊以后，美国海军总共有4艘航母出现新冠确诊病例");
 
-        MarqueeListViewAdapter adapter = new MarqueeListViewAdapter(getContext(), listData);
+        final MarqueeListViewAdapter adapter = new MarqueeListViewAdapter(getContext(), listData);
         marqueeListView.setAdapter(adapter);
-
+        marqueeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(position, adapter.getItem(position));
+                }
+            }
+        });
         // ==================================
         itemView.setTag(position);
         return itemView;
@@ -295,11 +298,11 @@ public class MarqueeListView extends ViewFlipper {
         return (int) getCurrentView().getTag();
     }
 
-    public List<ArrayList<String>> getNotices() {
+    public List<ArrayList<MarqueeListEntity>> getNotices() {
         return notices;
     }
 
-    public void setNotices(List<ArrayList<String>> notices) {
+    public void setNotices(List<ArrayList<MarqueeListEntity>> notices) {
         this.notices = notices;
     }
 
@@ -308,7 +311,7 @@ public class MarqueeListView extends ViewFlipper {
     }
 
     public interface OnItemClickListener {
-        void onItemClick(int position);
+        void onItemClick(int position, MarqueeListEntity entity);
     }
 
     /**
