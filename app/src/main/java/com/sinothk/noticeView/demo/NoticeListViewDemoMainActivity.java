@@ -20,7 +20,7 @@ public class NoticeListViewDemoMainActivity extends AppCompatActivity {
 
         final List<ArrayList<MarqueeListEntity>> list = new ArrayList<>();
         ArrayList<MarqueeListEntity> listData = new ArrayList<>();
-        listData.add(new MarqueeListEntity("1 美国目前部署在西海岸的“尼米兹”号航母，也出现两名新冠", "2020-04-08"));
+        listData.add(new MarqueeListEntity(R.mipmap.notice_view_ic_launcher, "1 美国目前部署在西海岸的“尼米兹”号航母，也出现两名新冠", "2020-04-08"));
         listData.add(new MarqueeListEntity("2 美军已经有4艘航母出现新冠确诊病例，分别是“里根”号，由于不处于部署状态号已经开始"));
         listData.add(new MarqueeListEntity("3 今年2月，路过华盛顿州西雅图市海岸的“尼米兹”号航母，由于不处于部署状态", "2020-04-08"));
         listData.add(new MarqueeListEntity("4 母港位于美国西海岸华盛顿州基察普海军基地布雷默顿港。", "2020-04-08"));

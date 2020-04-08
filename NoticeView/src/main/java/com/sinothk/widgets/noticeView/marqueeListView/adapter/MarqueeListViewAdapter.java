@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sinothk.widgets.noticeView.R;
@@ -49,15 +50,21 @@ public class MarqueeListViewAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-
         MarqueeListEntity entity = this.listData.get(position);
 
         holder.itemNameTv.setText(entity.getName());
         if (!TextUtils.isEmpty(entity.getDate())) {
-            holder.itemTimeTv.setText(this.listData.get(position).getDate());
+            holder.itemTimeTv.setText(entity.getDate());
             holder.itemTimeTv.setVisibility(View.VISIBLE);
         } else {
             holder.itemTimeTv.setVisibility(View.GONE);
+        }
+
+        if (entity.getIconRes() != 0) {
+            holder.itemIconTv.setImageResource(entity.getIconRes());
+            holder.itemIconTv.setVisibility(View.VISIBLE);
+        } else {
+            holder.itemIconTv.setVisibility(View.GONE);
         }
 
         return convertView;
@@ -66,8 +73,10 @@ public class MarqueeListViewAdapter extends BaseAdapter {
     static class ViewHolder {
 
         TextView itemNameTv, itemTimeTv;
+        ImageView itemIconTv;
 
         ViewHolder(View view) {
+            itemIconTv = view.findViewById(R.id.itemIconTv);
             itemNameTv = view.findViewById(R.id.itemNameTv);
             itemTimeTv = view.findViewById(R.id.itemTimeTv);
         }

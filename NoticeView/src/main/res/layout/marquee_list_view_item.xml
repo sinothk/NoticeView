@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:paddingStart="@dimen/notice_view_padding_start"
     android:paddingTop="@dimen/notice_view_padding_top"
@@ -13,25 +14,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/temp_02"
-        android:textSize="@dimen/notice_txt_size"
-        android:textColor="@color/notice_txt_color"
-        android:visibility="visible"
+        android:layout_centerVertical="true"
         android:layout_marginStart="@dimen/notice_date_margin_start"
-        android:text="2020-04-08" />
-
-    <TextView
-        android:id="@+id/itemNameTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@id/itemTimeTv"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:textSize="@dimen/notice_txt_size"
-        android:textColor="@color/notice_txt_color"
         android:src="@drawable/temp_02"
-        android:text="美国美国美国美国美国美国美国美国美国美国美国美国美国美国美国美国美国美国" />
+        tools:text="2020-04-08"
+        android:textColor="@color/notice_txt_color"
+        android:textSize="@dimen/notice_txt_size"
+        android:visibility="visible" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@id/itemTimeTv"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/itemIconTv"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="@dimen/notice_date_margin_start"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/temp_02"
+            android:textColor="@color/notice_txt_color"
+            android:textSize="@dimen/notice_txt_size"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/itemNameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            tools:text="美国美国美国美国美国美国美国美国美国美国美国美国美国美国美国美国美国美国"
+            android:textColor="@color/notice_txt_color"
+            android:textSize="@dimen/notice_txt_size" />
+    </LinearLayout>
 </RelativeLayout>
